@@ -8,22 +8,73 @@
             "uniqueID": 124173,
             "ioValues": [
                 {
-                    "name": "Input683333",
-                    "ioValue": 10
+                    "name": "Thickness",
+                    "ioValue": 3
+                },
+                {
+                    "name": "Interior Bend Radius",
+                    "ioValue": 3
+                },
+                {
+                    "name": "Length",
+                    "ioValue": 60
+                },
+                {
+                    "name": "K Factor",
+                    "ioValue": 0.4
                 }
             ],
             "topLevel": true,
             "allAtoms": [
                 {
                     "atomType": "Input",
-                    "name": "Input683333",
-                    "x": 94,
-                    "y": 150,
+                    "name": "Interior Bend Radius",
+                    "x": 116,
+                    "y": 58,
+                    "uniqueID": 821660,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 3
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Length",
+                    "x": 116,
+                    "y": 99,
+                    "uniqueID": 889119,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 60
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "Thickness",
+                    "x": 95,
+                    "y": 137,
                     "uniqueID": 731812,
                     "ioValues": [
                         {
                             "name": "default value",
-                            "ioValue": 10
+                            "ioValue": 3
+                        }
+                    ]
+                },
+                {
+                    "atomType": "Input",
+                    "name": "K Factor",
+                    "x": 94,
+                    "y": 182,
+                    "uniqueID": 819755,
+                    "ioValues": [
+                        {
+                            "name": "default value",
+                            "ioValue": 0.4
                         }
                     ]
                 },
@@ -75,6 +126,22 @@
                         {
                             "name": "tab",
                             "ioValue": 10
+                        },
+                        {
+                            "name": "length",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "interiorRadius",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "thickness",
+                            "ioValue": 10
+                        },
+                        {
+                            "name": "kFactor",
+                            "ioValue": 10
                         }
                     ],
                     "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tab, length, interiorRadius, thickness, kFactor){\n\n//Create a bend and a tab which have connectors\n  function bend(attachedGeometry, settings){\n    const bendArc = assemble(\n        intersection(\n            difference(\n                Circle(settings.interiorRadius + settings.thickness),\n                Circle(settings.interiorRadius)\n            ),\n            Square(100,100).right().front()\n        ).extrude(settings.length).rotateX(90).translate(0,0, settings.thickness + settings.interiorRadius ),\n        Plan.Connector(\"Bend Base\").rotateY(90).translate(0, - settings.length/2, settings.thickness/2)\n    );\n    \n    const tab = assemble(\n        attachedGeometry,\n        Plan.Connector(\"Base\")\n        .translate(\n            settings.thickness/2 + settings.interiorRadius,\n            - settings.length/2,\n            settings.thickness + settings.interiorRadius\n        )\n    ).as(\"attachedGeometry\");\n    \n    \n    //Join the tab and the bend together\n    return assemble(\n        tab,\n        bendArc\n    )\n    .as(\n        \"bend\" +\n        Math.floor((Math.random() * 1000)).toString().padStart(4, \"0\") +\n        JSON.stringify(settings)\n    )\n    .as(\"bent\");\n  }\n\n  const settings = {\n    length: length,\n    interiorRadius: interiorRadius,\n    thickness: thickness,\n    kFactor: kFactor\n  };\n  \n  const bent = bend(tab, settings)\n\n\n  return bent        //return must be geometry;\n}\n\nreturn main(tab, length, interiorRadius, thickness, kFactor)"
@@ -118,6 +185,30 @@
                 }
             ],
             "allConnectors": [
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "interiorRadius",
+                    "ap1ID": 821660,
+                    "ap2ID": 276976
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "length",
+                    "ap1ID": 889119,
+                    "ap2ID": 276976
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "thickness",
+                    "ap1ID": 731812,
+                    "ap2ID": 276976
+                },
+                {
+                    "ap1Name": "number or geometry",
+                    "ap2Name": "kFactor",
+                    "ap1ID": 819755,
+                    "ap2ID": 276976
+                },
                 {
                     "ap1Name": "number or geometry",
                     "ap2Name": "tab",
