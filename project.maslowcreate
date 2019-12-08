@@ -71,36 +71,6 @@
                     "ioValues": []
                 },
                 {
-                    "atomType": "Rectangle",
-                    "name": "Rectangle",
-                    "x": 187,
-                    "y": 277,
-                    "uniqueID": 178863,
-                    "ioValues": [
-                        {
-                            "name": "x length",
-                            "ioValue": 30
-                        },
-                        {
-                            "name": "y length",
-                            "ioValue": 30
-                        }
-                    ]
-                },
-                {
-                    "atomType": "Extrude",
-                    "name": "Extrude",
-                    "x": 349,
-                    "y": 266,
-                    "uniqueID": 164980,
-                    "ioValues": [
-                        {
-                            "name": "height",
-                            "ioValue": 30
-                        }
-                    ]
-                },
-                {
                     "atomType": "Code",
                     "name": "Code",
                     "x": 557,
@@ -129,36 +99,6 @@
                         }
                     ],
                     "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tab, length, interiorRadius, thickness, kFactor){\n\n//Create a bend and a tab which have connectors\n  function bend(attachedGeometry, settings){\n    \n    //Give this bend a unique ID...This should really be something more rigerous than random\n    const bendID = Math.floor((Math.random() * 1000)).toString().padStart(4, \"0\");\n    settings.bendID = bendID;\n    \n    const bendArc = assemble(\n        Square(settings.length,settings.thickness)\n            .moveY(settings.interiorRadius + settings.thickness/2)\n            .lathe(90, {resolution: 32})\n            .rotateZ(90)\n            .rotateY(180)\n            .translate(0,settings.length/-2,settings.interiorRadius + settings.thickness),\n        Plan.Connector(\"Bend Base\" + bendID).rotateY(90).translate(0, - settings.length/2, settings.thickness/2)\n    );\n    \n    const tab = assemble(\n        attachedGeometry,\n        Plan.Connector(\"Base\" + bendID)\n        .translate(\n            settings.thickness/2 + settings.interiorRadius,\n            - settings.length/2,\n            settings.thickness + settings.interiorRadius\n        )\n    ).as(\"attachedGeometry\" + bendID);\n    \n    \n    //Join the tab and the bend together\n    return assemble(\n        tab,\n        bendArc\n    )\n    .as(\"bend\" + bendID + JSON.stringify(settings) )\n  }\n\n  const settings = {\n    length: length,\n    interiorRadius: interiorRadius,\n    thickness: thickness,\n    kFactor: kFactor\n  };\n  \n  const bent = bend(tab, settings)\n\n\n  return bent        //return must be geometry;\n}\n\nreturn main(tab, length, interiorRadius, thickness, kFactor)"
-                },
-                {
-                    "atomType": "Translate",
-                    "name": "Translate",
-                    "x": 551,
-                    "y": 262,
-                    "uniqueID": 275110,
-                    "ioValues": [
-                        {
-                            "name": "xDist",
-                            "ioValue": 0
-                        },
-                        {
-                            "name": "yDist",
-                            "ioValue": -10
-                        },
-                        {
-                            "name": "zDist",
-                            "ioValue": 15
-                        }
-                    ]
-                },
-                {
-                    "atomType": "Code",
-                    "name": "Code",
-                    "x": 834,
-                    "y": 239,
-                    "uniqueID": 889743,
-                    "ioValues": [],
-                    "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(geometry){\n\nfunction unbend(fullShape){\n    \n    var returnValue = [fullShape.drop(\"bent\").kept()];\n    \n    Array.from(fullShape.tags()).forEach(tag => {\n        if(tag.substring(0,4) == 'bend'){\n            log(\"Bend Seen\");\n           \n            //Grab the settings used to create the initial bend\n            const settings = JSON.parse(tag.substring(8, tag.length));\n           \n            //Create the unrolled part of the bend\n            const partialCircumference = (Math.PI*2*(settings.interiorRadius+(settings.thickness*settings.kFactor)))/4;  //C = PI*D and then /4 because 1/4 of the circle for 90 degree bend\n            log(partialCircumference);\n            const flattenedBend = assemble(\n                Square(partialCircumference, settings.thickness)\n                .extrude(settings.length).rotateX(90).right(),\n                Plan.Connector(\"Flat Base\")\n                .flip().rotateY(90).translate(0, - settings.length/2, 0 ),\n                Plan.Connector(\"Flat Top\")\n                .rotateY(90)\n                .flip()\n                .translate(partialCircumference, - settings.length/2, 0 )\n            )\n            \n           const originalBend = fullShape.keep(tag);\n           \n            //Grab the tab off of the original bend\n            const attached = originalBend.keep(\"attachedGeometry\").kept();\n            //Sitck the unrolled part onto the correct edge\n            const unrolledBend = flattenedBend.connector(\"Flat Base\").to(originalBend.connector(\"Bend Base\"), { doAssemble: false })\n            //Stick the tab onto the unrolled part\n            const unbent = attached.connector(\"Base\").to(unrolledBend.connector(\"Flat Top\"));\n           \n            returnValue.push(unbent);\n        }\n    });\n   \n    return assemble(...returnValue);\n}\n\n  return unbend(geometry)        //return must be geometry;\n}\n\nreturn main(geometry)"
                 },
                 {
                     "atomType": "Output",
@@ -203,27 +143,6 @@
                     "ap2Primary": false,
                     "ap1ID": 932937,
                     "ap2ID": 276976
-                },
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "geometry",
-                    "ap2Primary": true,
-                    "ap1ID": 178863,
-                    "ap2ID": 164980
-                },
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "geometry",
-                    "ap2Primary": true,
-                    "ap1ID": 164980,
-                    "ap2ID": 275110
-                },
-                {
-                    "ap1Name": "geometry",
-                    "ap2Name": "geometry",
-                    "ap2Primary": false,
-                    "ap1ID": 276976,
-                    "ap2ID": 889743
                 },
                 {
                     "ap1Name": "geometry",
