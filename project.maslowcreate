@@ -10,6 +10,10 @@
             "ioValue": 3
         },
         {
+            "name": "Attached Tab",
+            "ioValue": 10
+        },
+        {
             "name": "Length",
             "ioValue": 60
         },
@@ -20,10 +24,6 @@
         {
             "name": "K Factor",
             "ioValue": 0.4
-        },
-        {
-            "name": "Attached Tab",
-            "ioValue": 10
         }
     ],
     "topLevel": true,
@@ -31,7 +31,7 @@
         {
             "atomType": "Input",
             "name": "Interior Bend Radius",
-            "x": 0.0849194729136164,
+            "x": 0.013333333333333334,
             "y": 0.2567049808429119,
             "uniqueID": 821660,
             "ioValues": []
@@ -39,7 +39,7 @@
         {
             "atomType": "Input",
             "name": "Attached Tab",
-            "x": 0.05710102489019033,
+            "x": 0.013333333333333334,
             "y": 0.3831417624521073,
             "uniqueID": 932937,
             "ioValues": []
@@ -47,7 +47,7 @@
         {
             "atomType": "Input",
             "name": "Length",
-            "x": 0.06588579795021962,
+            "x": 0.013333333333333334,
             "y": 0.5440613026819924,
             "uniqueID": 889119,
             "ioValues": []
@@ -85,7 +85,7 @@
         {
             "atomType": "Input",
             "name": "Thickness",
-            "x": 0.08711566617862372,
+            "x": 0.013333333333333334,
             "y": 0.7701149425287357,
             "uniqueID": 731812,
             "ioValues": []
@@ -93,7 +93,7 @@
         {
             "atomType": "Input",
             "name": "K Factor",
-            "x": 0.06222547584187409,
+            "x": 0.013333333333333334,
             "y": 0.9310344827586206,
             "uniqueID": 819755,
             "ioValues": []
