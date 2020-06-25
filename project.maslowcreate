@@ -10,16 +10,16 @@
             "ioValue": 3
         },
         {
-            "name": "Attached Tab",
-            "ioValue": 10
+            "name": "Arc",
+            "ioValue": 180
         },
         {
-            "name": "Length",
+            "name": "Width",
             "ioValue": 60
         },
         {
             "name": "Thickness",
-            "ioValue": 3
+            "ioValue": 1.5
         },
         {
             "name": "K Factor",
@@ -38,7 +38,7 @@
         },
         {
             "atomType": "Input",
-            "name": "Attached Tab",
+            "name": "Arc",
             "x": 0.013333333333333334,
             "y": 0.3831417624521073,
             "uniqueID": 932937,
@@ -46,7 +46,7 @@
         },
         {
             "atomType": "Input",
-            "name": "Length",
+            "name": "Width",
             "x": 0.013333333333333334,
             "y": 0.5440613026819924,
             "uniqueID": 889119,
@@ -55,11 +55,24 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.42489527229204066,
-            "y": 0.4985422740524781,
+            "x": 0.42250149611011373,
+            "y": 0.4956268221574344,
             "uniqueID": 276976,
-            "ioValues": [],
-            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(20, 180).close().sweep(Circle(2.5)).topView();\n}\n\nreturn main(thickness,width,arc)"
+            "ioValues": [
+                {
+                    "name": "thickness",
+                    "ioValue": 1.5
+                },
+                {
+                    "name": "width",
+                    "ioValue": 60
+                },
+                {
+                    "name": "arc",
+                    "ioValue": 180
+                }
+            ],
+            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, 180).close().sweep(Circle(thickness)).topView();\n}\n\nreturn main(thickness,width,arc)"
         },
         {
             "atomType": "Input",
@@ -85,7 +98,29 @@
             "ioValues": []
         }
     ],
-    "allConnectors": [],
+    "allConnectors": [
+        {
+            "ap1Name": "number or geometry",
+            "ap2Name": "arc",
+            "ap2Primary": false,
+            "ap1ID": 932937,
+            "ap2ID": 276976
+        },
+        {
+            "ap1Name": "number or geometry",
+            "ap2Name": "width",
+            "ap2Primary": false,
+            "ap1ID": 889119,
+            "ap2ID": 276976
+        },
+        {
+            "ap1Name": "number or geometry",
+            "ap2Name": "thickness",
+            "ap2Primary": false,
+            "ap1ID": 731812,
+            "ap2ID": 276976
+        }
+    ],
     "fileTypeVersion": 1,
     "filetypeVersion": 1,
     "circleSegmentSize": 2
