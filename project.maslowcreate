@@ -55,8 +55,8 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.39832444782939835,
-            "y": 0.4169096209912536,
+            "x": 0.4021325209444021,
+            "y": 0.43731778425655976,
             "uniqueID": 276976,
             "ioValues": [
                 {
@@ -72,7 +72,7 @@
                     "ioValue": 30
                 }
             ],
-            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness)).Center();\n}\n\nreturn main(thickness,width,arc)"
+            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness));\n}\n\nreturn main(thickness,width,arc)"
         },
         {
             "atomType": "Input",
@@ -89,10 +89,6 @@
             "y": 0.6472303206997084,
             "uniqueID": 933962,
             "ioValues": [
-                {
-                    "name": "geometry",
-                    "ioValue": ""
-                },
                 {
                     "name": "height",
                     "ioValue": 4
