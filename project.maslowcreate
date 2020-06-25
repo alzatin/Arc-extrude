@@ -55,8 +55,8 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.4021325209444021,
-            "y": 0.43731778425655976,
+            "x": 0.4033512866546978,
+            "y": 0.45481049562682213,
             "uniqueID": 276976,
             "ioValues": [
                 {
@@ -83,10 +83,18 @@
             "ioValues": []
         },
         {
+            "atomType": "Input",
+            "name": "Piece width",
+            "x": 0.013333333333333334,
+            "y": 0.9310344827586206,
+            "uniqueID": 819755,
+            "ioValues": []
+        },
+        {
             "atomType": "Extrude",
             "name": "Extrude",
-            "x": 0.6077684691546077,
-            "y": 0.6472303206997084,
+            "x": 0.6104129263913824,
+            "y": 0.705539358600583,
             "uniqueID": 933962,
             "ioValues": [
                 {
@@ -94,14 +102,6 @@
                     "ioValue": 4
                 }
             ]
-        },
-        {
-            "atomType": "Input",
-            "name": "Piece width",
-            "x": 0.013333333333333334,
-            "y": 0.9310344827586206,
-            "uniqueID": 819755,
-            "ioValues": []
         },
         {
             "atomType": "Output",
@@ -141,17 +141,17 @@
             "ap2ID": 276976
         },
         {
-            "ap1Name": "geometry",
-            "ap2Name": "number or geometry",
-            "ap2Primary": false,
-            "ap1ID": 933962
-        },
-        {
             "ap1Name": "number or geometry",
             "ap2Name": "height",
             "ap2Primary": false,
             "ap1ID": 819755,
             "ap2ID": 933962
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "number or geometry",
+            "ap2Primary": false,
+            "ap1ID": 933962
         }
     ],
     "fileTypeVersion": 1,
