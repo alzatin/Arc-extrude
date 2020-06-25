@@ -55,32 +55,11 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.5237302248126562,
-            "y": 0.4131147540983607,
+            "x": 0.42489527229204066,
+            "y": 0.4985422740524781,
             "uniqueID": 276976,
-            "ioValues": [
-                {
-                    "name": "tab",
-                    "ioValue": 10
-                },
-                {
-                    "name": "length",
-                    "ioValue": 60
-                },
-                {
-                    "name": "interiorRadius",
-                    "ioValue": 3
-                },
-                {
-                    "name": "thickness",
-                    "ioValue": 3
-                },
-                {
-                    "name": "kFactor",
-                    "ioValue": 0.4
-                }
-            ],
-            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(tab, length, interiorRadius, thickness, kFactor){\n\n//Create a bend and a tab which have connectors\n  function bend(attachedGeometry, settings){\n    \n    //Give this bend a unique ID...This should really be something more rigerous than random\n    const bendID = Math.floor((Math.random() * 1000)).toString().padStart(4, \"0\");\n    settings.bendID = bendID;\n    \n    const bendArc = assemble(\n        Square(settings.length,settings.thickness)\n            .moveY(settings.interiorRadius + settings.thickness/2)\n            .lathe(90, {resolution: 32})\n            .rotateZ(90)\n            .rotateY(180)\n            .translate(0,settings.length/-2,settings.interiorRadius + settings.thickness),\n        Plan.Connector(\"Bend Base\" + bendID).rotateY(90).translate(0, - settings.length/2, settings.thickness/2)\n    );\n    \n    const tab = assemble(\n        attachedGeometry,\n        Plan.Connector(\"Base\" + bendID)\n        .translate(\n            settings.thickness/2 + settings.interiorRadius,\n            - settings.length/2,\n            settings.thickness + settings.interiorRadius\n        )\n    ).as(\"attachedGeometry\" + bendID);\n    \n    \n    //Join the tab and the bend together\n    return assemble(\n        tab,\n        bendArc\n    )\n    .as(\"bend\" + bendID + JSON.stringify(settings) )\n  }\n\n  const settings = {\n    length: length,\n    interiorRadius: interiorRadius,\n    thickness: thickness,\n    kFactor: kFactor\n  };\n  \n  const bent = bend(tab, settings)\n\n\n  return bent        //return must be geometry;\n}\n\nreturn main(tab, length, interiorRadius, thickness, kFactor)"
+            "ioValues": [],
+            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(20, 180).close().sweep(Circle(2.5)).topView();\n}\n\nreturn main(thickness,width,arc)"
         },
         {
             "atomType": "Input",
@@ -106,49 +85,7 @@
             "ioValues": []
         }
     ],
-    "allConnectors": [
-        {
-            "ap1Name": "number or geometry",
-            "ap2Name": "interiorRadius",
-            "ap2Primary": false,
-            "ap1ID": 821660,
-            "ap2ID": 276976
-        },
-        {
-            "ap1Name": "number or geometry",
-            "ap2Name": "tab",
-            "ap2Primary": false,
-            "ap1ID": 932937,
-            "ap2ID": 276976
-        },
-        {
-            "ap1Name": "number or geometry",
-            "ap2Name": "length",
-            "ap2Primary": false,
-            "ap1ID": 889119,
-            "ap2ID": 276976
-        },
-        {
-            "ap1Name": "geometry",
-            "ap2Name": "number or geometry",
-            "ap2Primary": false,
-            "ap1ID": 276976
-        },
-        {
-            "ap1Name": "number or geometry",
-            "ap2Name": "thickness",
-            "ap2Primary": false,
-            "ap1ID": 731812,
-            "ap2ID": 276976
-        },
-        {
-            "ap1Name": "number or geometry",
-            "ap2Name": "kFactor",
-            "ap2Primary": false,
-            "ap1ID": 819755,
-            "ap2ID": 276976
-        }
-    ],
+    "allConnectors": [],
     "fileTypeVersion": 1,
     "filetypeVersion": 1,
     "circleSegmentSize": 2
