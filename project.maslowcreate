@@ -11,19 +11,19 @@
         },
         {
             "name": "Arc",
-            "ioValue": 180
+            "ioValue": 30
         },
         {
             "name": "Width",
-            "ioValue": 60
+            "ioValue": 200
         },
         {
             "name": "Thickness",
-            "ioValue": 1.5
+            "ioValue": 0.5
         },
         {
-            "name": "K Factor",
-            "ioValue": 0.4
+            "name": "Piece width",
+            "ioValue": 4
         }
     ],
     "topLevel": true,
@@ -55,24 +55,24 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.4272658035034273,
-            "y": 0.4956268221574344,
+            "x": 0.4402132520944402,
+            "y": 0.4985422740524781,
             "uniqueID": 276976,
             "ioValues": [
                 {
                     "name": "thickness",
-                    "ioValue": 1.5
+                    "ioValue": 0.5
                 },
                 {
                     "name": "width",
-                    "ioValue": 60
+                    "ioValue": 200
                 },
                 {
                     "name": "arc",
-                    "ioValue": 180
+                    "ioValue": 30
                 }
             ],
-            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness)).Loop(360 * 5, { pitch: 15 });\n}\n\nreturn main(thickness,width,arc)"
+            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness)).Center();\n}\n\nreturn main(thickness,width,arc)"
         },
         {
             "atomType": "Input",
@@ -83,8 +83,21 @@
             "ioValues": []
         },
         {
+            "atomType": "Extrude",
+            "name": "Extrude",
+            "x": 0.5308453922315308,
+            "y": 0.6967930029154519,
+            "uniqueID": 933962,
+            "ioValues": [
+                {
+                    "name": "height",
+                    "ioValue": 4
+                }
+            ]
+        },
+        {
             "atomType": "Input",
-            "name": "K Factor",
+            "name": "Piece width",
             "x": 0.013333333333333334,
             "y": 0.9310344827586206,
             "uniqueID": 819755,
@@ -114,11 +127,31 @@
             "ap2ID": 276976
         },
         {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": 276976,
+            "ap2ID": 933962
+        },
+        {
             "ap1Name": "number or geometry",
             "ap2Name": "thickness",
             "ap2Primary": false,
             "ap1ID": 731812,
             "ap2ID": 276976
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "number or geometry",
+            "ap2Primary": false,
+            "ap1ID": 933962
+        },
+        {
+            "ap1Name": "number or geometry",
+            "ap2Name": "height",
+            "ap2Primary": false,
+            "ap1ID": 819755,
+            "ap2ID": 933962
         }
     ],
     "fileTypeVersion": 1,
