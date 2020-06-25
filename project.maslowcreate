@@ -55,8 +55,8 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.4213046080191502,
-            "y": 0.5218658892128281,
+            "x": 0.4272658035034273,
+            "y": 0.4956268221574344,
             "uniqueID": 276976,
             "ioValues": [
                 {
@@ -72,7 +72,7 @@
                     "ioValue": 180
                 }
             ],
-            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness)).topView();\n}\n\nreturn main(thickness,width,arc)"
+            "code": "//You can learn more about all of the available methods at https://jsxcad.js.org/app/UserGuide.html \n\n\nfunction main(thickness,width,arc){\n\nreturn Arc(width, arc).close().sweep(Circle(thickness)).Loop(360 * 5, { pitch: 15 });\n}\n\nreturn main(thickness,width,arc)"
         },
         {
             "atomType": "Input",
